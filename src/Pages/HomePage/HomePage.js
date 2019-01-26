@@ -315,7 +315,7 @@ class HomePage extends Component {
                       className="homePage__notice__content__tags__more-text"
                       onClick={this.toggleTag}
                     >
-                      {tagRank.length > 5 ? `+${tagRank.length - 5}more` :  null}
+                      {tagRank.length > 5 ? `+${tagRank.length - 5}more` : null}
                     </p>
                   </div>
                 ) : null}
@@ -509,6 +509,7 @@ class HomePage extends Component {
           onChangeEmail={this.handleEmail}
           onChangePassword={this.handlePassword}
           onClickSign={this.handleSignIn}
+          onClickFacebook={this.handleFacebookSignIn}
           isValid={this.state.isValid}
           isEmpty={this.state.isEmpty}
         />
@@ -872,7 +873,6 @@ class HomePage extends Component {
 
   handleSignIn = () => {
     const { email, password, isEmpty } = this.state;
-
     const randomPackage = Math.floor(Math.random() * 26);
     const selectedEC = ec.editorChoice[randomPackage];
     const params = { email, password };
@@ -893,6 +893,11 @@ class HomePage extends Component {
         }
       });
     }
+  };
+
+  handleFacebookSignIn = () => {
+    nprogress.start();
+    this.getAllFeed(0, 1);
   };
 }
 
