@@ -136,6 +136,7 @@ class LandingPage extends Component {
         return null;
       } else {
         await this.props.dispatch(UserAction.getUser(token));
+        await this.props.onClickFacebook();
         await this.props.history.push({
           pathname: "/"
         });

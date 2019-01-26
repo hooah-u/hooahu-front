@@ -41,11 +41,44 @@ class Post extends Component {
     this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
   };
 
+  renderToggle = () => {
+    const { isTag, user, feed, onClickDelete } = this.props;
+    if (isTag) {
+      return user.id === feed.user_id ? (
+        <div className="post__header__option">
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <DropdownToggle tag="span">
+              <span className="post__header__option__icon">
+                <i className="xi-ellipsis-h" />
+              </span>
+            </DropdownToggle>
+            <DropdownMenu onClick={() => onClickDelete(feed.id)}>
+              <DropdownItem>delete</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+      ) : null;
+    } else {
+      return user.id === feed.user[0].id ? (
+        <div className="post__header__option">
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <DropdownToggle tag="span">
+              <span className="post__header__option__icon">
+                <i className="xi-ellipsis-h" />
+              </span>
+            </DropdownToggle>
+            <DropdownMenu onClick={() => onClickDelete(feed.id)}>
+              <DropdownItem>delete</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+      ) : null;
+    }
+  };
+
   render() {
     const {
-      user,
       feed,
-      index,
       isTag,
       onClickComment,
       onClickLike,
@@ -53,8 +86,7 @@ class Post extends Component {
       onClickUser,
       onClickTag,
       onClickThumb,
-      onClickCommentUser,
-      onClickDelete
+      onClickCommentUser
     } = this.props;
 
     return (
@@ -89,20 +121,7 @@ class Post extends Component {
               </p>
             </div>
           </div>
-          {user.id === feed.user_id ? (
-            <div className="post__header__option">
-              <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle tag="span">
-                  <span className="post__header__option__icon">
-                    <i className="xi-ellipsis-h" />
-                  </span>
-                </DropdownToggle>
-                <DropdownMenu onClick={() => onClickDelete(feed.id)}>
-                  <DropdownItem>delete</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </div>
-          ) : null}
+          {this.renderToggle}
         </div>
         <div className="post__body">
           <div className="post__body__image">
