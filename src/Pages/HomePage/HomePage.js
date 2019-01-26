@@ -315,7 +315,7 @@ class HomePage extends Component {
                       className="homePage__notice__content__tags__more-text"
                       onClick={this.toggleTag}
                     >
-                      +{tagRank.length - 5} more
+                      {tagRank.length > 5 ? `+${tagRank.length - 5}more` :  null}
                     </p>
                   </div>
                 ) : null}
