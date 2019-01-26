@@ -1,0 +1,178 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+@import "../../mixin.scss";
+
+.post {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  background-color: white;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid $border-color;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    &__userInfo {
+      display: flex;
+      flex-direction: row;
+      &__thumb {
+        &__icon {
+          font-size: 2rem;
+          display: inline-flex;
+          width: 50px;
+          height: 50px;
+          justify-content: center;
+          align-items: center;
+          box-sizing: border-box;
+          border-radius: 50%;
+          border: 1px rgba(0, 0, 0, 0.2) solid;
+          color: $sub-color;
+        }
+      }
+
+      &__nameArea {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &__name {
+          color: $dark-gray;
+        }
+        &__time {
+          color: $dark-gray;
+          font-size: 12px;
+          color: $gray;
+        }
+      }
+    }
+    &__option {
+      cursor: pointer;
+      &__icon {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &__body {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+
+    &__image {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+
+    &__text {
+      color: $dark-gray;
+      white-space: pre-line;
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+
+      &__type {
+        margin-top: 5px;
+        display: block;
+      }
+
+      &__tag {
+        color: $main-color;
+        margin-right: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 13px;
+
+        &__icon {
+          display: inline-flex;
+          margin-right: 2px;
+        }
+
+        &:hover {
+          @include transition(0.3s);
+          color: $gray;
+        }
+      }
+    }
+  }
+
+  &__footer {
+    &__wrapper {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      &__likeArea {
+        flex: 1;
+        border-right: 1px solid $border-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        &__count {
+          color: $dark-gray;
+          margin-right: 5px;
+
+          &-liked {
+            color: $sub-color;
+            margin-right: 5px;
+          }
+        }
+        &__icon {
+          color: $dark-gray;
+          font-size: 20px;
+          cursor: pointer;
+
+          &-liked {
+            color: $sub-color;
+            font-size: 20px;
+            cursor: pointer;
+          }
+
+          &:hover {
+            color: $sub-color;
+            @include transition(0.3s);
+          }
+        }
+      }
+      &__commentArea {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &__count {
+          color: $dark-gray;
+          margin-right: 5px;
+        }
+        &__icon {
+          color: $dark-gray;
+          font-size: 20px;
+          cursor: pointer;
+          &:hover {
+            color: $sub-color;
+            @include transition(0.3s);
+          }
+        }
+      }
+
+      &__commentList {
+        padding-top: 20px;
+      }
+    }
+  }
+}

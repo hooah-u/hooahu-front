@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "area": "Area1 (Dongducheon)",
+      "unit": [
+        "USAG Red Cloud",
+        "USAG Casey",
+        "Camp Kwang SA-RI",
+        "Camp Kyle",
+        "Camp Nimble",
+        "Camp Red Cloud",
+        "Camp Stanley",
+        "Camp Mobile",
+        "Yongpyong MPRC",
+        "Wonju AS"
+      ]
+    },
+    {
+      "area": "Area2 (Yongsan)",
+      "unit": ["USAG Yongsan", "Seoul AB(K-16)"]
+    },
+    {
+      "area": "Area3(5) (Pyeongtaek)",
+      "unit": [
+        "USAG Humphreys",
+        "Chongju AB(K-41)",
+        "Kwangju AB (K-57)",
+        "Osan AB (K-55)[5]",
+        "Suwong AB (K-13)",
+        "Daegu AB(K-2)"
+      ]
+    },
+    {
+      "area": "Area4(6) (Daegu)",
+      "unit": ["USAG Daegu", "Kunsan AB (K-8)"]
+    }
+  ]
+}

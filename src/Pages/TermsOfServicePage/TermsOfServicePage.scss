@@ -1,0 +1,27 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+@import "../../mixin.scss";
+
+.TermsPage {
+  &__content {
+    margin-top: 4rem;
+    padding: 0 6.5rem;
+
+    & a {
+      color: inherit;
+      text-decoration: none;
+      cursor: text;
+    }
+
+    & address {
+      padding-left: 1rem;
+    }
+
+    & span {
+      text-decoration: underline;
+    }
+  }
+}

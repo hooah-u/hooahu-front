@@ -1,0 +1,240 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+@import "../../mixin.scss";
+
+.guidePage {
+  width: 100vw;
+  overflow-x: hidden;
+  // display: flex;
+  // flex-direction: row;
+  overflow-y: scroll;
+  background-color: ghostwhite;
+  height: 100vh;
+  -webkit-overflow-scrolling: touch;
+  &__notice {
+    display: inline-block;
+    padding-top: 50px;
+    position: fixed;
+    z-index: 0;
+    left: 0;
+    width: 360px;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: ghostwhite;
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+    &__content {
+      padding-left: 70px;
+      padding-top: 40px;
+      @media screen and (max-width: 600px) {
+        display: none;
+      }
+      &__wrapper {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: white;
+        color: $dark-gray;
+        -webkit-transition: height 2s;
+        transition: height 2s;
+
+        &__itemContainer {
+          border-left: 4px solid $dark-gray;
+          padding-left: 1rem;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-bottom: 10px;
+
+          &-active {
+            color: $sub-color;
+            border-left: 4px solid $sub-color;
+          }
+
+          &:hover {
+            @include transition(0.3s);
+            color: $sub-color;
+            border-left: 4px solid $sub-color;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  &__feed {
+    width: calc(100vw - 30vw);
+    padding: 0 2rem;
+    margin-left: 360px;
+    @media screen and (max-width: 600px) {
+      overflow-y: scroll;
+      margin-left: 0;
+      width: 100vw;
+      display: inline-flex;
+    }
+    padding-top: 65px;
+    padding-bottom: 10rem;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: ghostwhite;
+
+    &__main {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      &__box {
+        width: 32%;
+        background-color: white;
+        text-align: center;
+        padding: 20px;
+
+        & h4 {
+          font-size: 150%;
+          font-weight: bold;
+          padding-bottom: 15px;
+          margin-bottom: 15px;
+          border-bottom: 1.5px solid $sub-color;
+        }
+
+        & h5 span {
+          font-size: 150%;
+          font-weight: bold;
+        }
+      }
+
+      &__title {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+        margin-top: 20px;
+        border-top: 2px solid black;
+      }
+    }
+
+    &__content {
+      padding-top: 40px;
+      background-color: white;
+      padding-left: 1rem;
+      padding-right: 1rem;
+
+      &__header {
+        padding-left: 1rem;
+        font-weight: bold;
+      }
+
+      &__body {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+
+        & h5 {
+          border-bottom: 2px solid $sub-color;
+          padding-bottom: 2px;
+        }
+        & h6 {
+          font-weight: bolder;
+        }
+        & p {
+          margin-bottom: 1.5rem;
+        }
+
+        &-menu {
+          & span {
+            text-decoration: underline;
+          }
+        }
+
+        &-trans {
+          &h6 {
+            font-size: 120%;
+          }
+          & span {
+            color: red;
+          }
+          & img {
+            width: 90%;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+
+        &-area {
+          & img {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+
+        &-emer {
+          & h5 {
+            border-bottom: 2px solid red;
+          }
+          & a.here {
+            text-decoration: underline;
+          }
+        }
+
+        &-korea {
+          &__fig56 img {
+            width: 50%;
+            padding: 0 1rem;
+          }
+
+          &__fig7 img {
+            width: 90%;
+            display: block;
+            margin: 0 auto;
+            padding-top: 1rem;
+          }
+        }
+
+        &-contact {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: 115%;
+
+          & q {
+            font-weight: bold;
+            margin-bottom: 25px;
+          }
+        }
+      }
+    }
+  }
+
+  &__filter {
+    display: inline-block;
+    padding-top: 50px;
+    position: fixed;
+    z-index: 0;
+    right: 0;
+    width: 350px;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: white;
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+    &__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 95vh;
+    }
+    &__content {
+      margin-right: 2rem;
+      padding-left: 20px;
+      background-color: white; // border-radius: 10px;
+    }
+  }
+}

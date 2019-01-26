@@ -1,0 +1,45 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+.signUpEmail {
+  &__content {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    &__title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      &__inputArea {
+        margin-top: 1rem;
+      }
+
+      &__passwordArea {
+        margin-top: 1rem;
+      }
+
+      &__text {
+        color: $dark-gray;
+      }
+      &__button {
+        margin-top: 1rem;
+        background-color: $sub-color !important;
+        border: none !important;
+
+        &:disabled {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+}

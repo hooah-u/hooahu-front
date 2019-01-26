@@ -1,0 +1,85 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+.signUp {
+  &__content {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__inputArea {
+      margin-top: 1rem;
+    }
+
+    &__title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      &__header {
+        color: $dark-gray;
+        font-size: 2.3rem;
+      }
+
+      &__buttonArea {
+        margin-top: 1rem;
+      }
+
+      &__button {
+        background-color: $sub-color !important;
+        border: none !important;
+      }
+
+      &__buttonIn {
+        background-color: $dark-gray !important;
+        border: none !important;
+
+        &__text {
+          color: white;
+        }
+      }
+
+      &__buttonF {
+        background-color: #3b5998 !important;
+        border: none !important;
+      }
+
+      &__text {
+        color: $dark-gray;
+        margin-left: 10px;
+      }
+
+      &__textF {
+        color: white;
+        margin-left: 10px;
+      }
+
+      &__iconF {
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      &__icon {
+        color: $dark-gray;
+        font-size: 1.5rem;
+      }
+
+      &__input {
+        width: 550px;
+      }
+    }
+  }
+}
+
+.route-wrapper {
+  position: relative;
+}
+
+.route-wrapper > div {
+  position: absolute;
+}

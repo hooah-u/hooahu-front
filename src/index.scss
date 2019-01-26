@@ -1,0 +1,185 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+@import "Colors";
+@import "./Pages/index";
+@import "./Components/index";
+@import "~nprogress/nprogress.css";
+@import url("https://fonts.googleapis.com/css?family=Lato|Raleway:400,700|Roboto");
+@import "node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+// @import "semantic-ui-css/semantic.min.css";
+
+body,
+html {
+  font-family: "Lato", sans-serif !important;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  a:hover {
+    text-decoration: none;
+  }
+  p {
+    margin: 0;
+  }
+  hr {
+    margin-top: 5px;
+  }
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.react-confirm-alert-body > h1 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+#nprogress .bar {
+  background: $sub-color !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px $sub-color, 0 0 5px $sub-color !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: $sub-color !important;
+  border-left-color: $sub-color !important;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $gray;
+  opacity: 1;
+  /* Firefox */
+}
+.btn-group-sm > .btn,
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0px !important;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer !important;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0px !important;
+}
+.react-confirm-alert-body {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 400px;
+  padding: 30px;
+  text-align: left;
+  background: #fff;
+  border-radius: 0px !important;
+  box-shadow: 0 20px 75px rgba(0, 0, 0, 0.13);
+  color: #666;
+}
+
+.react-confirm-alert-button-group > button {
+  outline: none;
+  background: #333;
+  border: none;
+  display: inline-block;
+  padding: 6px 18px;
+  color: #eee;
+  margin-right: 10px;
+  border-radius: 0px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.modal-content {
+  border-radius: 0px !important;
+}
+.modal-footer {
+  border-top: 0px !important;
+}
+.hooahu__modal {
+  width: 800px !important;
+}
+.image-gallery-left-nav,
+.image-gallery-right-nav {
+  color: #fff;
+  font-size: 2em;
+  padding: 50px 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  &:focus {
+    outline-style: none;
+  }
+}
+
+.image-gallery-fullscreen-button::before,
+.image-gallery-play-button::before {
+  font-size: 2em !important;
+  padding: 15px 20px;
+  text-shadow: 0 1px 1px #1a1a1a;
+}
+
+.image-gallery-fullscreen-button::after,
+.image-gallery-play-button::after {
+  &:focus {
+    outline: none !important;
+  }
+}
+.image-gallery-bullets .image-gallery-bullet {
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 0 #1a1a1a;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  outline: none;
+  padding: 4px;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.suggestionHighlighted {
+  background-color: gray;
+  font-size: 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: rgba(253, 216, 53, 0.2);
+}

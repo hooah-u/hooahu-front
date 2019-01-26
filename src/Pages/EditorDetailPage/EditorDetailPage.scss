@@ -1,0 +1,432 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+@import "../../mixin.scss";
+
+.carousel .thumb.selected,
+.carousel .thumb:hover {
+  border: 3px solid $sub-color !important;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid transparent !important;
+}
+
+.carousel .control-dots .dot {
+  opacity: 0.3;
+  box-shadow: 0px 0px 0px !important;
+  background: $sub-color !important ;
+}
+
+.editorDetail {
+  &__carousel {
+    width: 100%;
+  }
+
+  &__modal {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    @media screen and (max-width: 600px) {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+
+    &__comment {
+      height: 40vh;
+      overflow-y: scroll;
+    }
+
+    &__input {
+      padding-left: 50px !important;
+      padding-right: 50px !important;
+      @media screen and (max-width: 600px) {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+      }
+    }
+
+    &__close {
+      font-size: 13px;
+      color: $dark-gray;
+      cursor: pointer;
+    }
+  }
+
+  &__sideBar {
+    position: fixed;
+    border: 1px;
+    display: flex;
+    flex-direction: column;
+    right: 5vh;
+    top: 25vh;
+
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+
+    &__icon {
+      color: $dark-gray;
+      font-size: 1.7rem;
+      margin-bottom: 5px;
+
+      &-liked {
+        @include transition(0.3s);
+        color: $sub-color;
+        font-size: 1.7rem;
+        cursor: pointer;
+        margin-bottom: 5px;
+      }
+
+      &:hover {
+        @include transition(0.3s);
+        color: $sub-color;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__hr {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  &__content {
+    padding-top: 60px;
+    background-color: ghostwhite;
+
+    &__package {
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+
+      @media screen and (max-width: 600px) {
+        flex-direction: column;
+      }
+
+      &__text {
+        flex: 1;
+        padding: 100px 100px 50px 100px;
+
+        @media screen and (max-width: 600px) {
+          padding: 20px;
+        }
+
+        &__title {
+          font-weight: bold;
+        }
+
+        &__stars {
+          &__star {
+            color: $sub-color;
+            font-size: 1.5rem;
+          }
+        }
+
+        &__desc {
+          font-size: 18px;
+          color: $dark-gray;
+          font-weight: 300;
+        }
+
+        &__infoArea {
+          margin-top: 1.5rem;
+          margin-bottom: 1.5rem;
+
+          &__info {
+            font-weight: 300;
+            color: $dark-gray;
+          }
+        }
+
+        &__priceArea {
+          margin-top: 1.5rem;
+          margin-bottom: 1.5rem;
+          display: flex;
+          flex-direction: row;
+
+          &__price {
+            flex: 1;
+            &__text {
+              font-weight: 300;
+              color: black;
+            }
+
+            &__price {
+              margin-top: 0.5rem;
+              font-weight: 500;
+            }
+          }
+
+          &__travel {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex: 1;
+
+            &__button {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 170px;
+              height: 50px;
+              background-color: $sub-color;
+              cursor: pointer;
+              color: $dark-gray;
+
+              &:hover {
+                @include transition(0.3s);
+                background-color: $dark-gray;
+                color: white;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        &__detail {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          &__concept {
+            flex: 1;
+            &__row {
+              &__icon {
+                font-size: 2rem;
+                margin-right: 5px;
+                &-1 {
+                  color: $concept-low;
+                }
+                &-2 {
+                  color: $concept-medium;
+                }
+                &-3 {
+                  color: $concept-strong;
+                }
+              }
+            }
+          }
+
+          &__comment {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            flex-direction: row;
+            &__like {
+              margin-right: 1rem;
+              cursor: pointer;
+              color: $dark-gray;
+
+              &__icon {
+                font-size: 2rem;
+
+                &-liked {
+                  @include transition(0.3s);
+                  color: $sub-color;
+                  font-size: 2rem;
+                  cursor: pointer;
+                  margin-bottom: 5px;
+                }
+
+                &:hover {
+                  @include transition(0.3s);
+                  color: $sub-color;
+                }
+              }
+            }
+
+            &__review {
+              cursor: pointer;
+              color: $dark-gray;
+
+              &:hover {
+                @include transition(0.3s);
+
+                color: $sub-color;
+              }
+              &__icon {
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+
+        &__comment {
+          margin-top: 1rem;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+
+          &__wrapper {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          &-content {
+            display: flex;
+            align-items: center;
+          }
+
+          &-name {
+            font-weight: bold;
+            color: black;
+            margin-right: 10px;
+          }
+
+          &-date {
+            color: $gray;
+          }
+        }
+      }
+
+      &__image {
+        flex: 1;
+        padding: 120px 100px 150px 0px;
+
+        @media screen and (max-width: 600px) {
+          padding: 20px;
+        }
+
+        &__tabs {
+          border-radius: 0px;
+
+          &__tab {
+            cursor: pointer;
+            border-top-left-radius: 0px !important;
+            border-top-right-radius: 0px !important;
+
+            &__image {
+              width: 500px;
+            }
+          }
+        }
+      }
+    }
+
+    &__places {
+      margin-top: 3rem;
+      background-color: white;
+
+      &__title {
+        padding-top: 2rem;
+        padding-left: 100px;
+        display: flex;
+
+        @media screen and (max-width: 600px) {
+          padding: 20px 20px 0px 20px;
+        }
+
+        &__text {
+          font-weight: 300;
+          color: $dark-gray;
+          font-size: 2rem;
+        }
+      }
+
+      &__place {
+        display: flex;
+        flex-direction: row;
+        @media screen and (max-width: 600px) {
+          flex-direction: column;
+        }
+
+        &__image {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-left: 100px;
+
+          @media screen and (max-width: 600px) {
+            padding: 0px 20px 20px 20px;
+            width: 100%;
+          }
+        }
+
+        &__text {
+          flex: 1;
+          padding: 50px 100px 100px 100px;
+
+          @media screen and (max-width: 600px) {
+            padding: 20px;
+            width: 100%;
+          }
+
+          &__title {
+            color: $gray;
+            font-size: 2.5rem;
+            font-weight: 300;
+
+            &__text {
+              color: black;
+              font-weight: bold;
+            }
+          }
+
+          &__function {
+            color: $dark-gray;
+            font-size: 1rem;
+          }
+
+          &__infoArea {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+
+            &__container {
+              display: flex;
+              align-items: center;
+            }
+
+            &__row {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+
+              &__icon {
+                color: black;
+                font-size: 1.5rem;
+                margin-right: 10px;
+              }
+
+              &__area {
+                font-size: 1rem;
+                color: black;
+                margin-right: 10px;
+              }
+
+              &__text {
+                color: $dark-gray;
+                font-weight: 300;
+                margin-right: 10px;
+
+                > a {
+                  color: $dark-gray;
+                  &:hover {
+                    color: $sub-color;
+                  }
+                }
+              }
+            }
+          }
+
+          &__desc {
+            &__text {
+              font-weight: 300;
+              color: black;
+
+              &__formal {
+                font-weight: 300;
+                color: $dark-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

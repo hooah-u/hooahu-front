@@ -1,0 +1,15 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+.boxList {
+  &__content {
+    display: flex;
+    flex-direction: space-between;
+    &__text {
+    }
+
+    &__date {
+    }
+  }
+}

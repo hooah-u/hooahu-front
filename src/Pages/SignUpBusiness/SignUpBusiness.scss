@@ -1,0 +1,36 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+.signUpBusiness {
+  &__content {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &__title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $dark-gray;
+      flex-direction: column;
+      &__button {
+        margin-top: 2rem !important;
+        height: 55px;
+        border: 0px !important;
+        background-color: $sub-color !important;
+        border-radius: 75px !important;
+        &__text {
+          color: $dark-gray;
+        }
+      }
+    }
+  }
+}

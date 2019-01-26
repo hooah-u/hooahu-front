@@ -1,0 +1,23 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+.notice {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  cursor: pointer;
+  &:hover {
+    background-color: ghostwhite;
+  }
+
+  &__bar {
+    width: 4px;
+    background-color: $sub-color;
+    margin-right: 7px;
+    &-comment {
+      background-color: $main-color;
+    }
+  }
+}

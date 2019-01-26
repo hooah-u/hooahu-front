@@ -1,0 +1,34 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+.roundButton {
+  &__content {
+    background-color: $sub-color;
+    width: 300px !important;
+    height: 60px !important;
+    border-radius: 75px !important;
+
+    &__wrapper {
+      display: flex;
+      align-items: center;
+
+      &__iconArea {
+        flex: 0.3;
+
+        &__icon {
+          font-size: 2rem;
+          margin-right: 10px;
+        }
+      }
+
+      &__textArea {
+        flex: 2;
+        &__text {
+          padding-right: 10px;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
