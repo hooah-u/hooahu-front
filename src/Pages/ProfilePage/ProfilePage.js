@@ -60,7 +60,7 @@ class ProfilePage extends Component {
             />
           </div>
           <div>
-            Area
+            Area--
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret>{this.state.area}</DropdownToggle>
               <DropdownMenu>
