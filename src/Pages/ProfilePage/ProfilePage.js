@@ -37,8 +37,16 @@ class ProfilePage extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log(this.props);
+  componentWillReceiveProps(nextProps) {
+    if (this.props.user.id === 0 && nextProps.user.id !== 0) {
+      this.setState({ area: nextProps.user.area });
+    }
+  }
+
+  componentWillMount() {
+    if (this.props.user.id !== 0) {
+      this.setState({ area: this.props.user.area });
+    }
   }
 
   render() {
@@ -67,6 +75,7 @@ class ProfilePage extends Component {
                 {unit.map((data, index) => {
                   return (
                     <DropdownItem
+                      key={`profile-page-area${data.area}`}
                       onClick={() => this.setState({ area: data.area })}
                     >
                       {data.area}
@@ -88,7 +97,7 @@ class ProfilePage extends Component {
             </Dropdown>
           </div> */}
           <br />
-          <button value="Submit" onClick={this.onClickChange}>
+          <button value="Submit" onClick={this.onClickChangeProfile}>
             프로필 정보 변경
           </button>
         </div>
@@ -102,14 +111,15 @@ class ProfilePage extends Component {
     }));
   }
 
-  onClickChange = () => {
+  onClickChangeProfile = () => {
     const params = {
       props: this.props,
       body: {
-        nickname: this.state.nickname
+        nickname: this.state.nickname,
+        area: this.state.area
       }
     };
-    this.props.dispatch(AuthAction.postChangeUsername(params));
+    this.props.dispatch(AuthAction.postChangeProfile(params));
   };
 }
 
