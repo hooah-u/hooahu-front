@@ -4,6 +4,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 import FlipMove from "react-flip-move";
+import Linkify from "react-linkify";
 
 const defaultProps = {};
 const propTypes = {};
@@ -30,7 +31,15 @@ class Comment extends Component {
                     >
                       {data.nickname}
                     </strong>
-                    {isFeed ? data.content : data.comment}
+                    {isFeed ? (
+                      <Linkify properties={{ target: "_blank" }}>
+                        {data.content}
+                      </Linkify>
+                    ) : (
+                      <Linkify properties={{ target: "_blank" }}>
+                        {data.comment}
+                      </Linkify>
+                    )}
                   </div>
                   <p className="comment-date">
                     {moment(data.created_at).fromNow()}

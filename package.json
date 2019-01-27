@@ -66,6 +66,7 @@
     "react-google-maps": "^9.4.5",
     "react-image-gallery": "^0.8.8",
     "react-image-lightbox": "^5.0.0",
+    "react-linkify": "^0.2.2",
     "react-modal": "^3.4.4",
     "react-modal-dialog": "Dean177/react-modal-dialog#support/bump-react",
     "react-native-device-info": "^0.21.5",
