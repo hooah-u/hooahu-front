@@ -15,12 +15,6 @@ import cx from "classnames";
 import ContentLoader from "react-content-loader";
 import ProgressiveImage from "react-progressive-image";
 import { Modal, ModalBody, ModalFooter } from "reactstrap";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
 
 // import list from "../../Json/HotTopic.json";
 const defaultProps = {};
@@ -138,7 +132,6 @@ class UserPage extends Component {
     const {
       selectedEC,
       selectedPost,
-      selectedFeed,
       selectedComment,
       user,
       feedLoading,
@@ -147,7 +140,6 @@ class UserPage extends Component {
       comment,
       isPosting
     } = this.state;
-    const feedType = filterJson.feed_type;
     const postType = filterJson.post_type;
     return (
       <div className="userPage">
@@ -216,7 +208,7 @@ class UserPage extends Component {
                   {user && user.area}
                 </div>
                 <div className="userPage__feed__userinfo__wrapper__button">
-                  {user.id == this.props.user.id ? (
+                  {user.id === this.props.user.id ? (
                     <button onClick={this.handleProfile}>Edit Profile</button>
                   ) : null}
                 </div>
@@ -319,7 +311,7 @@ class UserPage extends Component {
                     <img
                       src={src}
                       onClick={() => this.handleEditor(selectedEC.id)}
-                      alt="an image"
+                      alt="banner"
                       style={styles.image}
                     />
                   )}
@@ -432,11 +424,12 @@ class UserPage extends Component {
           created_at: new Date()
         });
       }
+      return null;
     });
 
     const params = { post_id: selectedPostIndex, content: comment, token };
     this.setState(state => ({ isPosting: true, feeds: newFeed }));
-    dispatch(FeedAction.postComment(params)).then(value => {
+    dispatch(FeedAction.postComment(params)).then(() => {
       this.setState(state => ({ isPosting: false, comment: "" }));
     });
   };
@@ -453,8 +446,6 @@ class UserPage extends Component {
     const params = { user_id, token };
 
     dispatch(UserAction.getUserByUserID(params)).then(user => {
-      console.log("sdfdf");
-      console.log(user);
       dispatch(UserAction.getFeedByUserID(params)).then(value => {
         const userFeeds = value.slice();
         for (let i = 0; i < userFeeds.length; i++) {

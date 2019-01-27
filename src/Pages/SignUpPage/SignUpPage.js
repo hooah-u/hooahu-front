@@ -12,29 +12,6 @@ import FacebookLogin from "react-facebook-login";
 
 const defaultProps = {};
 const propTypes = {};
-const styles = {
-  block: {
-    marginTop: 20,
-    marginBottom: 10,
-    display: "flex",
-    flexDirection: "row",
-    paddingTop: 20,
-    paddingRight: 10,
-    paddingLeft: 10
-  },
-  radioButton: {
-    marginBottom: 16
-  },
-  label: {
-    width: 200,
-    fontSize: 24,
-    color: "#9b9b9b"
-  },
-  labelCivilian: {
-    fontSize: 22,
-    color: "#9b9b9b"
-  }
-};
 
 const mapStateToProps = state => {
   return {
@@ -160,8 +137,6 @@ class SignUpPage extends Component {
   };
 
   componentClicked = () => {
-    console.log("$$$ SignUpPage 클릭");
-    console.log(this.state.fbLogin);
     const { fbLogin } = this.state;
     const { history } = this.props;
     history.push({

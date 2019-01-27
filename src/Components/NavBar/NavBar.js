@@ -2,7 +2,6 @@
 // If you want to make other Component, Copy and Refactor this Component.
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -32,24 +31,6 @@ const mapStateToProps = state => {
     isLogin: state.reducer.isLogin,
     user: state.reducer.user
   };
-};
-
-const options = {
-  title: "Title",
-  message: "Message",
-  buttons: [
-    {
-      label: "Yes",
-      onClick: () => alert("Click Yes")
-    },
-    {
-      label: "No",
-      onClick: () => alert("Click No")
-    }
-  ],
-  childrenElement: () => <div />,
-  customUI: ({ title, message, onClose }) => <div>Custom UI</div>,
-  willUnmount: () => {}
 };
 
 class NavBar extends Component {
@@ -142,19 +123,19 @@ class NavBar extends Component {
     return (
       <Navbar className="navBar" light expand="md" fixed="top">
         <NavbarBrand className="navBar__logo" onClick={this.handleHome}>
-          <img src={MainLogo} width={130} />
+          <img src={MainLogo} width={130} alt="hooahu-logo" />
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           {this.props.menuVisible === true ? null : (
             <Nav className={cx("ml-auto", "navBar__items")} navbar>
-              {isLogin === true ? (
+              {/* {isLogin === true ? (
                 <NavItem className="navBar__items__item">
                   <span className="navBar__items__item-bell">
                     <i className="xi-bell" />
                   </span>
                 </NavItem>
-              ) : null}
+              ) : null} */}
               {isLogin === true ? (
                 <NavItem
                   className="navBar__items__item"
@@ -181,7 +162,7 @@ class NavBar extends Component {
                 </NavItem>
               )}
 
-              {isStart === true ? null : (
+              {/* {isStart === true ? null : (
                 <NavItem>
                   <NavLink
                     className={cx("navBar__items__item", {
@@ -191,7 +172,7 @@ class NavBar extends Component {
                     <div onClick={this.handleEditor}>Package Trip</div>
                   </NavLink>
                 </NavItem>
-              )}
+              )} */}
 
               {isStart === true ? null : (
                 <NavItem>

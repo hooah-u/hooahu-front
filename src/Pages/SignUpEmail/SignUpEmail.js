@@ -3,8 +3,7 @@
 
 import React, { Component } from "react";
 import { NavBar, RoundButton, RoundInput } from "../../Components";
-import { Container, Row, Col, Button } from "reactstrap";
-import { Link, Route } from "react-router-dom";
+import { Container, Row } from "reactstrap";
 import * as UserAction from "../../ActionCreators/UserAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";

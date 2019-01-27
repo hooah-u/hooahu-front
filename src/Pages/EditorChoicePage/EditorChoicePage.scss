@@ -5,9 +5,7 @@
 @import "../../mixin.scss";
 
 .editorChoice {
-  width: 100vw;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  width: 100%;
   display: flex;
   flex-direction: row;
 
@@ -20,7 +18,7 @@
 
   &__feed {
     display: inline-block;
-    width: calc(100vw - 350px);
+    width: calc(100% - 350px);
     padding: 0 2rem;
     padding-top: 60px;
     padding-bottom: 10rem;
@@ -228,7 +226,7 @@
     z-index: 0;
     right: 0;
     width: 350px;
-    height: 100vh;
+    height: 100%;
     box-sizing: border-box;
     background-color: white;
     @media screen and (max-width: 600px) {

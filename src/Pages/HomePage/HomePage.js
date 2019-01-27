@@ -145,7 +145,7 @@ class HomePage extends Component {
     nprogress.start();
     const randomPackage = Math.floor(Math.random() * 26);
     const selectedEC = ec.editorChoice[randomPackage];
-    const { isLogin, dispatch } = this.props;
+    const { isLogin } = this.props;
     if (isLogin) {
       this.setState({ selectedEC, feedLoading: true });
       this.getAllFeed(0, 1);
@@ -163,7 +163,7 @@ class HomePage extends Component {
 
   onSuggestionsFetchRequested = ({ value }) => {
     const inputValue = (value && value.trim().toLowerCase()) || "";
-    const inputLength = inputValue.length;
+    // const inputLength = inputValue.length;
     const { dispatch } = this.props;
     let finalValue = inputValue.replace(/\#/g, "");
     const params = { props: this.props, tag_name: finalValue };
@@ -219,7 +219,6 @@ class HomePage extends Component {
       selectedFeed,
       selectedPost,
       selectedPostType,
-      selectedPostIndex,
       selectedEC,
       selectedComment,
       showModal,
@@ -234,7 +233,7 @@ class HomePage extends Component {
       tagRank,
       tagRankLoading
     } = this.state;
-    const { isLogin, user, dispatch } = this.props;
+    const { isLogin, user } = this.props;
 
     if (isLogin) {
       return (
@@ -518,7 +517,7 @@ class HomePage extends Component {
   }
 
   handleScroll = () => {
-    const { dispatch, token } = this.props;
+    const { dispatch } = this.props;
     const { selectedPost, index, footerLoading } = this.state;
 
     if (footerLoading) {
@@ -650,12 +649,13 @@ class HomePage extends Component {
           created_at: new Date()
         });
       }
+      return null;
     });
 
     const params = { post_id: selectedPostIndex, content: comment, token };
-    this.setState(state => ({ isPosting: true, feeds: newFeed }));
-    dispatch(FeedAction.postComment(params)).then(value => {
-      this.setState(state => ({ isPosting: false, comment: "" }));
+    this.setState(() => ({ isPosting: true, feeds: newFeed }));
+    dispatch(FeedAction.postComment(params)).then(() => {
+      this.setState(() => ({ isPosting: false, comment: "" }));
     });
   };
 
@@ -725,7 +725,7 @@ class HomePage extends Component {
         pic_list: imagePreview
       };
 
-      const images = imagePreview.map((data, index) => {
+      const images = imagePreview.map(data => {
         return { original: data };
       });
 
@@ -735,16 +735,17 @@ class HomePage extends Component {
         newTags = [];
       } else {
         tags.map((data, index) => {
-          newTags.push({ title: data });
+          return newTags.push({ title: data });
         });
       }
       // 태그 랭킹에 카운트 추가
       const newTagRank = tagRank.slice();
       for (let i = 0; i < newTags.length; i++) {
-        newTagRank.map((data, index) => {
+        newTagRank.map(data => {
           if (newTags[i].title === data.title) {
             data.counted_value += 1;
           }
+          return null;
         });
       }
       newTagRank.sort((a, b) => {
@@ -768,7 +769,7 @@ class HomePage extends Component {
           profile_img: user.profile_img
         };
         newFeeds.splice(0, 0, frontParams);
-        this.setState(state => ({
+        this.setState(() => ({
           feedText: "",
           imagePreview: [],
           tags: [],
@@ -813,7 +814,7 @@ class HomePage extends Component {
     const newFeeds = feeds.slice();
     newFeeds[index].isLiked = false;
     newFeeds[index].like_cnt -= 1;
-    this.setState(state => ({ feeds: newFeeds }));
+    this.setState(() => ({ feeds: newFeeds }));
     dispatch(FeedAction.disLike(params));
   };
 

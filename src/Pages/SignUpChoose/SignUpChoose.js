@@ -3,12 +3,9 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Route } from "react-router-dom";
 
-import * as DefaultActionCreator from "../../ActionCreators/_DefaultActionCreator";
 import { NavBar } from "../../Components";
-import { Container, Row, Col, Button } from "reactstrap";
-import TextField from "material-ui/TextField";
+import { Container, Row, Button } from "reactstrap";
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 
 const defaultProps = {};

@@ -1,21 +1,13 @@
 // React Common Modules
 import React, { Component } from "react";
 // React Router
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter,
-  Switch
-} from "react-router-dom"; // Material UI Provider for React
+import { Route, withRouter, Switch } from "react-router-dom"; // Material UI Provider for React
 
 import { connect } from "react-redux";
 import * as UserAction from "./ActionCreators/UserAction";
 
 // Own Modules
 import {
-  DefaultPage,
-  DefaultReduxPage,
   HomePage,
   SignUpPage,
   SignUpUserName,
@@ -60,21 +52,23 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/@:user_id" component={UserPage} />
-        <Route path="/@:user_id/profile" component={ProfilePage} />
-        <Route exact path="/signup" component={SignUpPage} />
-        <Route path="/signup/choose" component={SignUpChoose} />
-        <Route path="/signup/email" component={SignUpEmail} />
-        <Route path="/signup/username" component={SignUpUserName} />
-        <Route path="/signup/civ" component={SignUpCiv} />
-        <Route path="/signup/unit" component={SignUpUnit} />
-        <Route path="/signup/business" component={SignUpBusiness} />
-        <Route path="/signup/reason" component={SignUpWork} />
-        <Route exact path="/editor_choice" component={EditorChoicePage} />
-        <Route path="/editor_choice/:package" component={EditorDetailPage} />
-        <Route exact path="/guide" component={GuidePage} />
-        <Route exact path="/tag/:tag_name" component={TagPage} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/@:user_id" component={UserPage} />
+          <Route path="/@:user_id/profile" component={ProfilePage} />
+          <Route exact path="/signup" component={SignUpPage} />
+          <Route path="/signup/choose" component={SignUpChoose} />
+          <Route path="/signup/email" component={SignUpEmail} />
+          <Route path="/signup/username" component={SignUpUserName} />
+          <Route path="/signup/civ" component={SignUpCiv} />
+          <Route path="/signup/unit" component={SignUpUnit} />
+          <Route path="/signup/business" component={SignUpBusiness} />
+          <Route path="/signup/reason" component={SignUpWork} />
+          <Route exact path="/editor_choice" component={EditorChoicePage} />
+          <Route path="/editor_choice/:package" component={EditorDetailPage} />
+          <Route exact path="/guide" component={GuidePage} />
+          <Route exact path="/tag/:tag_name" component={TagPage} />
+        </Switch>
       </div>
     );
   }

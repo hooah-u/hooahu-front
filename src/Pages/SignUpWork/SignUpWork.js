@@ -3,11 +3,9 @@
 
 import React, { Component } from "react";
 import { NavBar, RoundButton } from "../../Components";
-import { Container, Row, Col } from "reactstrap";
-import { Link, Route } from "react-router-dom";
+import { Container, Row } from "reactstrap";
 import DropDownMenu from "material-ui/DropDownMenu";
 import MenuItem from "material-ui/MenuItem";
-import unitJson from "../../Json/unit";
 import { connect } from "react-redux";
 import * as AuthAction from "../../ActionCreators/AuthAction";
 import * as UserAction from "../../ActionCreators/UserAction";
@@ -65,20 +63,6 @@ class SignUpWork extends Component {
       picture,
       fbToken
     } = this.props.location.state;
-
-    console.log("이메일 :" + email);
-    console.log("비밀번호 :" + password);
-    console.log("성 :" + last);
-    console.log("이름 :" + first);
-    console.log("닉네임 :" + nick);
-    console.log("타입 :" + type);
-    console.log("c타입: " + c_type);
-    console.log("w타입 :" + w_type);
-    console.log("Area :" + area);
-    console.log("Camp :" + camp);
-    console.log("picture :" + picture);
-    console.log("fbToken :" + fbToken);
-
     const params = {
       first_name: first,
       last_name: last,
@@ -94,7 +78,6 @@ class SignUpWork extends Component {
       camp: camp,
       reason: this.state.status
     };
-    console.log(params);
     this.props.dispatch(AuthAction.postSignUp(params)).then(async value => {
       const params = { props: { token: value } };
       await this.props.dispatch(UserAction.getUser(params));
