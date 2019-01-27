@@ -24,10 +24,12 @@ const loggerMiddleware = createLogger();
 
 const isDev = process.env.NODE_ENV !== "production";
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware, // Middleware for dispatch()
-  isDev ? loggerMiddleware : null // Middleware for loging
-)(createStore);
+const createStoreWithMiddleware = isDev
+  ? applyMiddleware(
+      thunkMiddleware, // Middleware for dispatch()
+      loggerMiddleware // Middleware for loging
+    )(createStore)
+  : applyMiddleware(thunkMiddleware)(createStore);
 
 let store = createStoreWithMiddleware(Reducer);
 const muiTheme = getMuiTheme({
