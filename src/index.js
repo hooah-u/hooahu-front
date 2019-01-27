@@ -22,9 +22,11 @@ import "react-image-lightbox/style.css";
 
 const loggerMiddleware = createLogger();
 
+const isDev = process.env.NODE_ENV !== "production";
+
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware, // Middleware for dispatch()
-  loggerMiddleware // Middleware for loging
+  isDev ? loggerMiddleware : null // Middleware for loging
 )(createStore);
 
 let store = createStoreWithMiddleware(Reducer);
