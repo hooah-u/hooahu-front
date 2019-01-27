@@ -365,14 +365,14 @@ class TagPage extends Component {
           if (newFeeds[i].isLiked) {
             newFeeds[i].isLiked = true;
           }
-          newFeeds[i].images = feeds.result[i].images.map((data, index) => {
+          newFeeds[i].images = feeds.result[i].images.map(data => {
             return { original: data.img_url };
           });
         }
         tagImage.result.map((data, index) => {
           return newTagImage.push(data.img_url);
         });
-        this.setState(state => ({
+        this.setState(() => ({
           feeds: newFeeds,
           tagLoading: false,
           tagImage: newTagImage
@@ -387,7 +387,7 @@ class TagPage extends Component {
     const tag_name = match.params.tag_name;
     const params = { token, tag_name };
     dispatch(FeedAction.getTagUser(params)).then(tagUser => {
-      this.setState(state => ({ tagUser }));
+      this.setState(() => ({ tagUser }));
     });
   };
 
@@ -398,18 +398,18 @@ class TagPage extends Component {
     const newFeeds = feeds.slice();
     newFeeds[index].isLiked = true;
     newFeeds[index].like_cnt += 1;
-    this.setState(state => ({ feeds: newFeeds }));
+    this.setState(() => ({ feeds: newFeeds }));
     dispatch(FeedAction.postLike(params));
   };
 
   toggleModal = () => {
-    this.setState(state => ({
+    this.setState(() => ({
       showModal: !this.state.showModal
     }));
   };
 
   closeLightbox = () => {
-    this.setState(state => ({ lightboxIsOpen: false }));
+    this.setState(() => ({ lightboxIsOpen: false }));
   };
 
   handleDisLike = (id, index) => {
@@ -419,12 +419,12 @@ class TagPage extends Component {
     const newFeeds = feeds.slice();
     newFeeds[index].isLiked = false;
     newFeeds[index].like_cnt -= 1;
-    this.setState(state => ({ feeds: newFeeds }));
+    this.setState(() => ({ feeds: newFeeds }));
     dispatch(FeedAction.disLike(params));
   };
 
   handleComment = (id, comments) => {
-    this.setState(state => ({
+    this.setState(() => ({
       selectedPostIndex: id,
       selectedComment: comments
       // showModal: true
@@ -453,7 +453,7 @@ class TagPage extends Component {
     const { dispatch, token, user } = this.props;
     const { comment, selectedPostIndex, selectedComment, feeds } = this.state;
     const newFeed = feeds.slice();
-    newFeed.map((data, index) => {
+    newFeed.map(data => {
       if (data.id === selectedPostIndex) {
         data.comments.push({
           content: comment,
@@ -463,12 +463,13 @@ class TagPage extends Component {
           created_at: new Date()
         });
       }
+      return null;
     });
 
     const params = { post_id: selectedPostIndex, content: comment, token };
-    this.setState(state => ({ isPosting: true, feeds: newFeed }));
-    dispatch(FeedAction.postComment(params)).then(value => {
-      this.setState(state => ({ isPosting: false, comment: "" }));
+    this.setState(() => ({ isPosting: true, feeds: newFeed }));
+    dispatch(FeedAction.postComment(params)).then(() => {
+      this.setState(() => ({ isPosting: false, comment: "" }));
     });
   };
 
@@ -481,7 +482,7 @@ class TagPage extends Component {
   };
 
   handleGallery = index => {
-    this.setState(state => ({ photoIndex: index, lightboxIsOpen: true }));
+    this.setState(() => ({ photoIndex: index, lightboxIsOpen: true }));
   };
 }
 

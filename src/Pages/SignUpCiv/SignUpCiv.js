@@ -3,11 +3,9 @@
 
 import React, { Component } from "react";
 import { NavBar, RoundButton } from "../../Components";
-import { Container, Row, Col } from "reactstrap";
-import { Link, Route } from "react-router-dom";
+import { Container, Row } from "reactstrap";
 import DropDownMenu from "material-ui/DropDownMenu";
 import MenuItem from "material-ui/MenuItem";
-import unitJson from "../../Json/unit";
 
 const defaultProps = {};
 const propTypes = {};

@@ -43,7 +43,7 @@ class Post extends Component {
 
   renderToggle = () => {
     const { isTag, user, feed, onClickDelete } = this.props;
-    if (isTag) {
+    if (!isTag) {
       return user.id === feed.user_id ? (
         <div className="post__header__option">
           <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -121,7 +121,7 @@ class Post extends Component {
               </p>
             </div>
           </div>
-          {this.renderToggle}
+          {this.renderToggle()}
         </div>
         <div className="post__body">
           <div className="post__body__image">

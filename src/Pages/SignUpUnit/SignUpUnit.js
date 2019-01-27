@@ -3,8 +3,7 @@
 
 import React, { Component } from "react";
 import { NavBar, RoundButton } from "../../Components";
-import { Container, Row, Col } from "reactstrap";
-import { Link, Route } from "react-router-dom";
+import { Container, Row } from "reactstrap";
 import DropDownMenu from "material-ui/DropDownMenu";
 import MenuItem from "material-ui/MenuItem";
 import unitJson from "../../Json/unit";
@@ -150,15 +149,6 @@ class SignUpUnit extends Component {
 
   render() {
     const unit = unitJson.data;
-    const {
-      email,
-      password,
-      first,
-      last,
-      nick,
-      type,
-      c_type
-    } = this.props.location.state;
     return (
       <Container className="signUpUnit">
         <NavBar menuVisible={true} isActive="auth" />

@@ -25,13 +25,6 @@ const mapStateToProps = state => {
   };
 };
 
-const styles = {
-  image: {
-    width: "100%",
-    objectFit: "cover"
-  }
-};
-
 class EditorChoicePage extends Component {
   constructor(props) {
     super(props);
@@ -202,7 +195,6 @@ class EditorChoicePage extends Component {
 
   handleArea = async index => {
     const areaJson = filterJson.area;
-    const dayJson = filterJson.day;
     await this.setState({
       editorChoice: ec.editorChoice
     });
@@ -254,7 +246,6 @@ class EditorChoicePage extends Component {
   };
 
   handleDay = async index => {
-    const areaJson = filterJson.area;
     const dayJson = filterJson.day;
     await this.setState({ editorChoice: ec.editorChoice });
     if (index === 0) {
@@ -340,7 +331,6 @@ class EditorChoicePage extends Component {
     const dayJson = filterJson.day;
     const areaJson = filterJson.area;
     const { editorChoice } = this.state;
-    console.log(editorChoice);
 
     return (
       <div

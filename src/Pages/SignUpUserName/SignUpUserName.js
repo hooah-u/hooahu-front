@@ -3,11 +3,7 @@
 
 import React, { Component } from "react";
 import { NavBar, RoundButton, RoundInput } from "../../Components";
-import { Container, Row, Col, Button } from "reactstrap";
-import { SignUpUnit } from "../../Pages";
-
-import { Link, Route } from "react-router-dom";
-import { AnimatedRoute } from "react-router-transition";
+import { Container, Row } from "reactstrap";
 
 const defaultProps = {};
 const propTypes = {};

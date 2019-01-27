@@ -5,12 +5,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { NavBar } from "../../Components";
-import { Container, Row, Col } from "reactstrap";
-import filterJson from "../../Json/filter";
-import ec from "../../Json/ec";
-import cx from "classnames";
-import NumberFormat from "react-number-format";
-import ProgressiveImage from "react-progressive-image-loading";
 
 const defaultProps = {};
 const propTypes = {};

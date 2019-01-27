@@ -3,8 +3,7 @@
 
 import React, { Component } from "react";
 import { NavBar, RoundButton } from "../../Components";
-import { Container, Row, Col } from "reactstrap";
-import { Link, Route } from "react-router-dom";
+import { Container, Row } from "reactstrap";
 import DropDownMenu from "material-ui/DropDownMenu";
 import MenuItem from "material-ui/MenuItem";
 import businessJson from "../../Json/business";
@@ -53,7 +52,6 @@ class SignUpBusiness extends Component {
 
   handleNext = () => {
     const business = businessJson.data;
-    const regular = regularJson.data;
     const area = areaJson.data;
     const {
       email,
@@ -82,15 +80,7 @@ class SignUpBusiness extends Component {
   };
 
   render() {
-    const {
-      c_type,
-      type,
-      password,
-      email,
-      first,
-      last,
-      nick
-    } = this.props.location.state;
+    const { c_type } = this.props.location.state;
     const business = businessJson.data;
     const regular = regularJson.data;
     const area = areaJson.data;

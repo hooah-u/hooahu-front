@@ -3,7 +3,7 @@
 
 import React, { Component } from "react";
 import Checkbox from "material-ui/Checkbox";
-import { Container, Row, Col } from "reactstrap";
+import { Col } from "reactstrap";
 
 const defaultProps = {};
 const propTypes = {};
@@ -27,6 +27,7 @@ const styles = {
 class CheckBox extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   render() {
