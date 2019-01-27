@@ -278,6 +278,7 @@ class TagPage extends Component {
                   <Post
                     isTag
                     feed={data}
+                    user={user}
                     key={index}
                     index={index}
                     onClickTag={this.handleTag}
