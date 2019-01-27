@@ -162,7 +162,7 @@ class NavBar extends Component {
                 </NavItem>
               )}
 
-              {/* {isStart === true ? null : (
+              {isStart === true ? null : (
                 <NavItem>
                   <NavLink
                     className={cx("navBar__items__item", {
@@ -172,9 +172,9 @@ class NavBar extends Component {
                     <div onClick={this.handleEditor}>Package Trip</div>
                   </NavLink>
                 </NavItem>
-              )} */}
+              )}
 
-              {isStart === true ? null : (
+              {/* {isStart === true ? null : (
                 <NavItem>
                   <NavLink
                     className={cx("navBar__items__item", {
@@ -185,7 +185,7 @@ class NavBar extends Component {
                     Place List
                   </NavLink>
                 </NavItem>
-              )}
+              )} */}
 
               {isStart === true ? null : (
                 <UncontrolledDropdown nav inNavbar>

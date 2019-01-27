@@ -53,7 +53,7 @@ class Post extends Component {
               </span>
             </DropdownToggle>
             <DropdownMenu onClick={() => onClickDelete(feed.id)}>
-              <DropdownItem>delete</DropdownItem>
+              <DropdownItem>Delete</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
@@ -68,7 +68,7 @@ class Post extends Component {
               </span>
             </DropdownToggle>
             <DropdownMenu onClick={() => onClickDelete(feed.id)}>
-              <DropdownItem>delete</DropdownItem>
+              <DropdownItem>Delete</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
