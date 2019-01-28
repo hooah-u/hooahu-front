@@ -141,7 +141,7 @@ class SignUpPage extends Component {
     history.push({
       pathname: "/signup/choose",
       state: {
-        fbLogin: localStorage.getItem("hooahu-signup-facebookObj")
+        fbLogin: JSON.parse(localStorage.getItem("hooahu-signup-facebookObj"))
       }
     });
   };
@@ -150,9 +150,15 @@ class SignUpPage extends Component {
     if (response.email === undefined || response.email === "") {
       response.email = response.userID + "@facebook.com";
       const fbLogin = response;
-      localStorage.setItem("hooahu-signup-facebookObj", fbLogin);
+      localStorage.setItem(
+        "hooahu-signup-facebookObj",
+        JSON.stringify(fbLogin)
+      );
     } else {
-      localStorage.setItem("hooahu-signup-facebookObj", response);
+      localStorage.setItem(
+        "hooahu-signup-facebookObj",
+        JSON.stringify(response)
+      );
     }
   };
 }
