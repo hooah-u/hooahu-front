@@ -137,12 +137,11 @@ class SignUpPage extends Component {
   };
 
   componentClicked = () => {
-    const { fbLogin } = this.state;
     const { history } = this.props;
     history.push({
       pathname: "/signup/choose",
       state: {
-        fbLogin
+        fbLogin: localStorage.getItem("hooahu-signup-facebookObj")
       }
     });
   };
@@ -151,9 +150,9 @@ class SignUpPage extends Component {
     if (response.email === undefined || response.email === "") {
       response.email = response.userID + "@facebook.com";
       const fbLogin = response;
-      this.setState({ fbLogin });
+      localStorage.setItem("hooahu-signup-facebookObj", fbLogin);
     } else {
-      this.setState({ fbLogin: response });
+      localStorage.setItem("hooahu-signup-facebookObj", response);
     }
   };
 }
