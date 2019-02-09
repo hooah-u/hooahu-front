@@ -97,10 +97,9 @@ class SignUpPage extends Component {
               <div className="signUp__content__title__buttonArea">
                 <FacebookLogin
                   appId="1974817842817382"
-                  autoLoad={true}
+                  autoLoad={false}
                   fields="name,email,picture"
                   scope="public_profile"
-                  onClick={this.componentClicked}
                   callback={this.responseFacebook}
                   textButton="Sign up with Facebook"
                   className="signUp__content__title__buttonF"
@@ -137,35 +136,26 @@ class SignUpPage extends Component {
     });
   };
 
-  componentClicked = () => {
+  responseFacebook = response => {
     const { history } = this.props;
-    const fbLogin = JSON.parse(
-      localStorage.getItem("hooahu-signup-facebookObj")
-    );
-    if (fbLogin !== null) {
+    if (response.hasOwnProperty("status") && response.status === undefined) {
+      history.replace({
+        pathname: "/signup"
+      });
+    } else {
+      let fbLogin;
+      if (response.email === undefined || response.email === "") {
+        response.email = response.userID + "@facebook.com";
+        fbLogin = response;
+      } else {
+        fbLogin = response;
+      }
       history.push({
         pathname: "/signup/choose",
         state: {
-          fbLogin: JSON.parse(localStorage.getItem("hooahu-signup-facebookObj"))
+          fbLogin
         }
       });
-    }
-  };
-
-  responseFacebook = response => {
-    console.log(response);
-    if (response.email === undefined || response.email === "") {
-      response.email = response.userID + "@facebook.com";
-      const fbLogin = response;
-      localStorage.setItem(
-        "hooahu-signup-facebookObj",
-        JSON.stringify(fbLogin)
-      );
-    } else {
-      localStorage.setItem(
-        "hooahu-signup-facebookObj",
-        JSON.stringify(response)
-      );
     }
   };
 }

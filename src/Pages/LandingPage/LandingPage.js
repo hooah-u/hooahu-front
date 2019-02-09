@@ -88,10 +88,9 @@ class LandingPage extends Component {
               </div>
               <FacebookLogin
                 appId="1974817842817382"
-                autoLoad={true}
+                autoLoad={false}
                 fields="name,email,picture"
                 callback={this.responseFacebook}
-                onClick={this.componentClicked}
                 textButton="Facebook Login"
                 className="signUp__content__title__buttonF"
                 textClassName="signUp__content__title__textF"
@@ -122,26 +121,29 @@ class LandingPage extends Component {
   };
 
   responseFacebook = response => {
-    localStorage.setItem("hooahu-facebook-token", response.accessToken);
-  };
-
-  componentClicked = () => {
-    const params = {
-      is_facebook: true,
-      access_token: localStorage.getItem("hooahu-facebook-token")
-    };
-    this.props.dispatch(AuthAction.postSignIn(params)).then(async value => {
-      const token = { props: { token: value } };
-      if (value === "failed") {
-        return null;
-      } else {
-        await this.props.dispatch(UserAction.getUser(token));
-        await this.props.onClickFacebook();
-        await this.props.history.push({
-          pathname: "/"
-        });
-      }
-    });
+    const { history } = this.props;
+    if (response.hasOwnProperty("status") && response.status === undefined) {
+      history.replace({
+        pathname: "/"
+      });
+    } else {
+      const params = {
+        is_facebook: true,
+        access_token: response.accessToken
+      };
+      this.props.dispatch(AuthAction.postSignIn(params)).then(async value => {
+        const token = { props: { token: value } };
+        if (value === "failed") {
+          return null;
+        } else {
+          await this.props.dispatch(UserAction.getUser(token));
+          await this.props.onClickFacebook();
+          await history.push({
+            pathname: "/"
+          });
+        }
+      });
+    }
   };
 }
 
