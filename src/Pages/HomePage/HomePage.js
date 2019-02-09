@@ -558,7 +558,7 @@ class HomePage extends Component {
     const { dispatch } = this.props;
     const index = count;
     const params = { props: this.props, index };
-    this.setState(state => ({
+    this.setState(() => ({
       footerLoading: typeIndex === 2 ? true : false,
       isPosting: typeIndex === 0 ? true : false // 맨처음 로딩인지, 필터링 로딩인지
     }));
@@ -583,7 +583,7 @@ class HomePage extends Component {
           footerLoading: value.result.length < 20 ? false : true
         }));
         dispatch(FeedAction.getTagRank(params)).then(tagRank => {
-          this.setState(state => ({ tagRank, tagRankLoading: false }));
+          this.setState(() => ({ tagRank, tagRankLoading: false }));
           nprogress.done();
         });
       }
@@ -752,7 +752,7 @@ class HomePage extends Component {
         return b.counted_value - a.counted_value;
       });
 
-      this.setState(state => ({ isPosting: true, tagRank: newTagRank }));
+      this.setState(() => ({ isPosting: true, tagRank: newTagRank }));
       this.props.dispatch(FeedAction.postFeed(params)).then(value => {
         const frontParams = {
           id: value.newPostId,

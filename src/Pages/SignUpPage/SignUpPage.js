@@ -99,6 +99,7 @@ class SignUpPage extends Component {
                   appId="1974817842817382"
                   autoLoad={true}
                   fields="name,email,picture"
+                  scope="public_profile"
                   onClick={this.componentClicked}
                   callback={this.responseFacebook}
                   textButton="Sign up with Facebook"
@@ -138,15 +139,21 @@ class SignUpPage extends Component {
 
   componentClicked = () => {
     const { history } = this.props;
-    history.push({
-      pathname: "/signup/choose",
-      state: {
-        fbLogin: JSON.parse(localStorage.getItem("hooahu-signup-facebookObj"))
-      }
-    });
+    const fbLogin = JSON.parse(
+      localStorage.getItem("hooahu-signup-facebookObj")
+    );
+    if (fbLogin !== null) {
+      history.push({
+        pathname: "/signup/choose",
+        state: {
+          fbLogin: JSON.parse(localStorage.getItem("hooahu-signup-facebookObj"))
+        }
+      });
+    }
   };
 
   responseFacebook = response => {
+    console.log(response);
     if (response.email === undefined || response.email === "") {
       response.email = response.userID + "@facebook.com";
       const fbLogin = response;

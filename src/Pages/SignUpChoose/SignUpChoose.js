@@ -88,7 +88,6 @@ class SignUpChoose extends Component {
 
   componentDidMount() {
     console.log("SignUpChoose --component Did Mount");
-    console.log(this.props.location);
   }
 
   render() {

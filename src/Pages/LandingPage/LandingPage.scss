@@ -5,9 +5,10 @@
 .landingPage {
   background-color: ghostwhite;
   width: 100vw;
+  height: 100%;
   overflow-x: hidden;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -107,5 +108,10 @@
         }
       }
     }
+  }
+
+  &__about {
+    padding: 20px 10px;
+    background-color: $sub-color;
   }
 }

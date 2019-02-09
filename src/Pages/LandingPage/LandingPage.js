@@ -104,7 +104,7 @@ class LandingPage extends Component {
             </div>
           </div>
         </div>
-        <div className="landingPage__about" />
+        <div className="landingPage__about">haha</div>
       </div>
     );
   }
