@@ -40,12 +40,14 @@ class ProfilePage extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.user.id === 0 && nextProps.user.id !== 0) {
       this.setState({ area: nextProps.user.area });
+      this.setState({ nickname: nextProps.user.nickname });
     }
   }
 
   componentWillMount() {
     if (this.props.user.id !== 0) {
       this.setState({ area: this.props.user.area });
+      this.setState({ nickname: this.props.user.nickname });
     }
   }
 
@@ -68,7 +70,7 @@ class ProfilePage extends Component {
             />
           </div>
           <div>
-            Area--
+            Area
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret>{this.state.area}</DropdownToggle>
               <DropdownMenu>
@@ -85,17 +87,7 @@ class ProfilePage extends Component {
               </DropdownMenu>
             </Dropdown>
           </div>
-          {/* <div>
-            Unit
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle caret>Unit</DropdownToggle>
-              <DropdownMenu>
-                {unit.map((data, index) => {
-                  return <DropdownItem>{data.area}</DropdownItem>;
-                })}
-              </DropdownMenu>
-            </Dropdown>
-          </div> */}
+
           <br />
           <button value="Submit" onClick={this.onClickChangeProfile}>
             프로필 정보 변경
@@ -119,7 +111,11 @@ class ProfilePage extends Component {
         area: this.state.area
       }
     };
-    this.props.dispatch(AuthAction.postChangeProfile(params));
+    this.props.dispatch(AuthAction.postChangeProfile(params)).then(result => {
+      this.props.history.push({
+        pathname: `/@${this.props.user.id}`
+      });
+    });
   };
 }
 
