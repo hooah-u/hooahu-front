@@ -147,6 +147,8 @@ class ProfilePage extends Component {
   handleConfirm = value => {
     if (value === this.state.new_pass) {
       this.setState({ isvalid: true });
+    } else {
+      this.setState({ isvalid: false });
     }
   };
 
