@@ -5,9 +5,12 @@ export const TOKEN_EXPIRED = "TOKEN_EXPIRED";
 export const SUCCEED_TO_SIGNIN = "SUCCEED_TO_SIGNIN";
 export const FAILED_TO_SIGNIN = "FAILED_TO_SIGNIN";
 
-export const SUCCEED_TO_POST_CHANGE_USERNAME =
-  "SUCCEED_TO_POST_CHANGE_USERNAME";
-export const FAILED_TO_POST_CHANGE_USERNAME = "FAILED_TO_POST_CHANGE_USERNAME";
+export const SUCCEED_TO_POST_CHANGE_PROFILE = "SUCCEED_TO_POST_CHANGE_PROFILE";
+export const FAILED_TO_POST_CHANGE_PROFILE = "FAILED_TO_POST_CHANGE_PROFILE";
+
+export const SUCCEED_TO_POST_CHANGE_PASSWORD =
+  "SUCCEED_TO_POST_CHANGE_PASSWORD";
+export const FAILED_TO_POST_CHANGE_PASSWORD = "FAILED_TO_POST_CHANGE_PASSWORD";
 
 export const SUCCEED_TO_SIGNUP = "SUCCEED_TO_SIGNUP";
 export const FAILED_TO_SIGNUP = "FAILED_TO_SIGNUP";
@@ -54,10 +57,10 @@ export const postSignUp = params => {
   };
 };
 
-export const postChangeUsername = params => {
+export const postChangeProfile = params => {
   return async dispatch => {
     try {
-      let response = Request.postData(`api/user/update/nickname`, params).then(
+      let response = Request.postData(`api/user/update/profile`, params).then(
         result => {
           switch (result) {
             case "token_expired":
@@ -65,7 +68,7 @@ export const postChangeUsername = params => {
 
             default:
               dispatch({
-                type: SUCCEED_TO_POST_CHANGE_USERNAME,
+                type: SUCCEED_TO_POST_CHANGE_PROFILE,
                 payload: result
               });
               return result;
@@ -75,7 +78,44 @@ export const postChangeUsername = params => {
       return response;
     } catch (error) {
       dispatch({
-        type: FAILED_TO_POST_CHANGE_USERNAME,
+        type: FAILED_TO_POST_CHANGE_PROFILE,
+        payload: { data: "NETWORK_ERROR" }
+      });
+      console.error(error);
+    }
+  };
+};
+
+export const postChangePassword = params => {
+  return async dispatch => {
+    try {
+      let response = Request.postData(`api/user/update/password`, params).then(
+        result => {
+          if (result == "token_expired") {
+            return dispatch({ type: TOKEN_EXPIRED });
+          } else {
+            switch (result.message) {
+              case "password_is_wrong":
+                dispatch({
+                  type: FAILED_TO_POST_CHANGE_PASSWORD,
+                  payload: result
+                });
+                return result;
+
+              default:
+                dispatch({
+                  type: SUCCEED_TO_POST_CHANGE_PASSWORD,
+                  payload: result
+                });
+                return result;
+            }
+          }
+        }
+      );
+      return response;
+    } catch (error) {
+      dispatch({
+        type: FAILED_TO_POST_CHANGE_PASSWORD,
         payload: { data: "NETWORK_ERROR" }
       });
       console.error(error);
