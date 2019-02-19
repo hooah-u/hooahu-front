@@ -110,7 +110,7 @@ class HomePage extends Component {
       message: "not at bottom",
       isPosting: false,
       expandNotice: false,
-      selectedFeed: 0,
+      selectedFeed: 0, //우측 최신순 인기순 필터링
       selectedPost: 0, //우측 포스트 타입 필터링 인덱스
       feeds: [],
       index: 0,
@@ -148,7 +148,7 @@ class HomePage extends Component {
     const { isLogin } = this.props;
     if (isLogin) {
       this.setState({ selectedEC, feedLoading: true });
-      this.getAllFeed(0, 1);
+      this.getAllFeed(0, 1, { rank: 0 });
     } else {
       this.setState({ selectedEC });
       nprogress.done();
@@ -178,9 +178,10 @@ class HomePage extends Component {
   };
 
   onClickDelete = feed_id => {
+    const { selectedFeed } = this.state;
     const params = { props: this.props, id: feed_id };
     this.props.dispatch(FeedAction.deleteFeed(params)).then(() => {
-      this.getAllFeed(0, 1);
+      this.getAllFeed(0, 1, { rank: selectedFeed === 0 ? 0 : 1 });
     });
   };
 
@@ -518,11 +519,11 @@ class HomePage extends Component {
 
   handleScroll = () => {
     const { dispatch } = this.props;
-    const { selectedPost, index, footerLoading } = this.state;
+    const { selectedPost, index, footerLoading, selectedFeed } = this.state;
 
     if (footerLoading) {
       if (selectedPost === 0) {
-        this.getAllFeed(index, 2);
+        this.getAllFeed(index, 2, { rank: selectedFeed === 0 ? 0 : 1 });
       } else {
         const params = {
           type: selectedPost,
@@ -547,7 +548,7 @@ class HomePage extends Component {
     }
   };
 
-  getAllFeed = (count, typeIndex) => {
+  getAllFeed = (count, typeIndex, { rank }) => {
     /**
      * typeIndex
      * 0: 포스팅 로딩
@@ -557,7 +558,11 @@ class HomePage extends Component {
      */
     const { dispatch } = this.props;
     const index = count;
-    const params = { props: this.props, index };
+    const params = {
+      props: this.props,
+      index,
+      rank: rank === 0 ? 0 : 1
+    };
     this.setState(() => ({
       footerLoading: typeIndex === 2 ? true : false,
       isPosting: typeIndex === 0 ? true : false // 맨처음 로딩인지, 필터링 로딩인지
@@ -592,24 +597,28 @@ class HomePage extends Component {
 
   //우측 최근, 인기순
   handleFeed = index => {
-    this.setState({ selectedFeed: index });
+    this.setState({ selectedFeed: index }, () => {
+      this.getAllFeed(0, 0, { rank: index });
+    });
   };
 
   //우측 포스트 타입 필터링
   handlePost = typeIndex => {
     window.scrollTo(0, 0);
     const { isLogin } = this.props;
+    const { selectedFeed } = this.state;
     const params = {
       type: typeIndex,
       props: this.props,
-      index: 0
+      index: 0,
+      rank: selectedFeed === 0 ? 0 : 1
     };
     if (!isLogin) {
       this.props.history.push({ pathname: "/signup" });
     } else {
       if (typeIndex === 0) {
         this.setState({ selectedPost: typeIndex, isPosting: true });
-        this.getAllFeed(0, 0);
+        this.getAllFeed(0, 0, { rank: selectedFeed === 0 ? 0 : 1 });
       } else {
         this.setState({
           selectedPost: typeIndex,
@@ -890,7 +899,7 @@ class HomePage extends Component {
           });
           nprogress.start();
           this.setState({ selectedEC, feedLoading: true });
-          this.getAllFeed(0, 1);
+          this.getAllFeed(0, 1, { rank: 0 });
         }
       });
     }
@@ -898,7 +907,7 @@ class HomePage extends Component {
 
   handleFacebookSignIn = () => {
     nprogress.start();
-    this.getAllFeed(0, 1);
+    this.getAllFeed(0, 1, { rank: 0 });
   };
 }
 
