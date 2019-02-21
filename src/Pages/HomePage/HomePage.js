@@ -21,6 +21,7 @@ import { Modal, ModalBody, ModalFooter, Collapse } from "reactstrap";
 import _ from "lodash";
 import BottomScrollListener from "react-bottom-scroll-listener";
 import Autosuggest from "react-autosuggest";
+import { FAILED_TO_GET_FEED_BY_USER_ID } from "../../ActionCreators/UserAction";
 
 // import list from "../../Json/HotTopic.json";
 const defaultProps = {};
@@ -398,7 +399,7 @@ class HomePage extends Component {
                   );
                 })
               )}
-              {feeds.length === 0 && !feedLoading ? (
+              {feeds.length === 0 && !feedLoading && !isPosting ? (
                 <div
                   style={{
                     display: "flex",
@@ -561,13 +562,14 @@ class HomePage extends Component {
     const params = {
       props: this.props,
       index,
-      rank: rank === 0 ? 0 : 1
+      rank
     };
     this.setState(() => ({
       footerLoading: typeIndex === 2 ? true : false,
       isPosting: typeIndex === 0 ? true : false // 맨처음 로딩인지, 필터링 로딩인지
     }));
     dispatch(FeedAction.getAllFeed(params)).then(value => {
+      console.log(value);
       if (value === "token_expired") {
         nprogress.done();
       } else {
@@ -597,9 +599,33 @@ class HomePage extends Component {
 
   //우측 최근, 인기순
   handleFeed = index => {
-    this.setState({ selectedFeed: index }, () => {
+    const { selectedPost } = this.state;
+    const params = {
+      index: 0,
+      type: selectedPost,
+      props: this.props,
+      rank: index
+    };
+    if (selectedPost === 0) {
       this.getAllFeed(0, 0, { rank: index });
-    });
+    } else {
+      this.setState({ isPosting: true, footerLoading: false });
+      this.props.dispatch(FeedAction.getFeed(params)).then(value => {
+        const newFeeds = value.result.slice();
+        for (let i = 0; i < newFeeds.length; i++) {
+          newFeeds[i].images = value.result[i].images.map((data, index) => {
+            return { original: data.img_url };
+          });
+        }
+        this.setState({
+          index: value.nextIndex,
+          feeds: newFeeds,
+          isPosting: false,
+          footerLoading: value.result.length < 20 ? false : true
+        });
+      });
+    }
+    this.setState({ selectedFeed: index });
   };
 
   //우측 포스트 타입 필터링

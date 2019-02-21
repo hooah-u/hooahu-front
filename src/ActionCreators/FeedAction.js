@@ -43,7 +43,7 @@ export const getAllFeed = params => {
   return async dispatch => {
     try {
       let response = Request.getData(
-        `api/post/all?index=${params.index}?rank=${params.rank}`,
+        `api/post/all?index=${params.index}&rank=${params.rank}`,
         params
       ).then(result => {
         switch (result) {
@@ -71,7 +71,7 @@ export const getFeed = params => {
   return async dispatch => {
     try {
       let response = Request.getData(
-        `api/post?post_type=${params.type}&index=${params.index}?rank=${
+        `api/post?post_type=${params.type}&index=${params.index}&rank=${
           params.rank
         }`,
         params
