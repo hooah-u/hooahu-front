@@ -41,7 +41,9 @@ class ProfilePage extends Component {
       old_pass: "",
       new_pass: "",
       isvalid: false,
-      showCrop: false
+      showCrop: false,
+      targetImg: "",
+      croppedImg: ""
     };
   }
 
