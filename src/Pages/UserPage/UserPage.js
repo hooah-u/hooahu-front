@@ -187,6 +187,9 @@ class UserPage extends Component {
               <div className="userPage__notice__content__wrapper">
                 <Thumb size={60} src={user && user.profile_img} fontSize={60} />
                 <div className="userPage__notice__content__wrapper__name">
+                  <strong style={{ fontSize: 18 }}>
+                    {user && user.nickname}
+                  </strong>
                   <p>{`${user && user.full_name}`}</p>
                 </div>
                 <div className="userPage__notice__content__wrapper__info">

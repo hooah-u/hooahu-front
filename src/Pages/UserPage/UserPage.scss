@@ -84,6 +84,10 @@
 
         &__name {
           margin-top: 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
         }
 
         &__info {
