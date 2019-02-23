@@ -239,11 +239,11 @@ class ProfilePage extends Component {
   };
 
   updateProfileImage = () => {
-    const { targetImg } = this.state;
+    const { croppedImg } = this.state;
     const params = {
       props: this.props,
       body: {
-        base64: targetImg
+        base64: croppedImg
       }
     };
     this.props.dispatch(AuthAction.updateProfileImage(params)).then(() => {
