@@ -283,10 +283,9 @@ class HomePage extends Component {
           <div className="homePage__notice">
             <div className="homePage__notice__content">
               <div className="homePage__notice__content__wrapper">
-                <p>Welcome to Hooah!U </p>
-                <p>
-                  <strong>{user && user.full_name}</strong>{" "}
-                </p>
+                <h5>Welcome to Hooah!U </h5>
+                <strong>{user && user.nickname}</strong>
+                <p>{user && user.full_name}</p>
               </div>
               <div className="homePage__notice__content__tags">
                 <p className="homePage__notice__content__tags-title">
