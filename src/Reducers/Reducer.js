@@ -5,7 +5,9 @@ import {
   SUCCEED_TO_SIGNUP,
   SUCCEED_TO_SIGNIN,
   FAILED_TO_SIGNIN,
-  SUCCEED_TO_SIGNOUT
+  SUCCEED_TO_SIGNOUT,
+  SUCCEED_TO_UPDATE_PROFILE_IMAGE,
+  SUCCEED_TO_POST_CHANGE_PROFILE
 } from "../ActionCreators/AuthAction";
 
 import {
@@ -71,6 +73,19 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         userById: action.payload
       });
+    case SUCCEED_TO_POST_CHANGE_PROFILE:
+      return Object.assign({}, state, {
+        user: {
+          ...state.user,
+          nickname: action.payload.nickname,
+          area: action.payload.area
+        }
+      });
+    case SUCCEED_TO_UPDATE_PROFILE_IMAGE:
+      return Object.assign({}, state, {
+        user: { ...state.user, profile_img: action.payload.message }
+      });
+
     default:
       return state;
   }

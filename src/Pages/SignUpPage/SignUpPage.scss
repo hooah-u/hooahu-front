@@ -40,17 +40,25 @@
         border: none !important;
 
         &__text {
-          color: white;
+          color: $dark-gray !important;
         }
       }
 
       &__buttonF {
+        color: white;
         background-color: #3b5998 !important;
         border: none !important;
+        width: 300px !important;
+        height: 60px !important;
+        border-radius: 75px !important;
       }
 
       &__text {
-        color: $dark-gray;
+        color: $dark-gray !important;
+      }
+
+      &__textIn {
+        color: white;
         margin-left: 10px;
       }
 

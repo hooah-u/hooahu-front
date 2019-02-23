@@ -10,8 +10,6 @@ import * as UserAction from "../../ActionCreators/UserAction";
 import { NavBar, Post, Thumb, SocialInput, Comment } from "../../Components";
 import ec from "../../Json/ec";
 import nprogress from "nprogress";
-import filterJson from "../../Json/filter";
-import cx from "classnames";
 import ContentLoader from "react-content-loader";
 import ProgressiveImage from "react-progressive-image";
 import { Modal, ModalBody, ModalFooter } from "reactstrap";
@@ -131,7 +129,6 @@ class UserPage extends Component {
     const { isLogin } = this.props;
     const {
       selectedEC,
-      selectedPost,
       selectedComment,
       user,
       feedLoading,
@@ -140,7 +137,6 @@ class UserPage extends Component {
       comment,
       isPosting
     } = this.state;
-    const postType = filterJson.post_type;
     return (
       <div className="userPage">
         <NavBar listClassName="userPage__tabBar__list" />
@@ -189,11 +185,7 @@ class UserPage extends Component {
           ) : (
             <div className="userPage__notice__content">
               <div className="userPage__notice__content__wrapper">
-                <Thumb
-                  size={100}
-                  src={user && user.profile_img}
-                  fontSize={60}
-                />
+                <Thumb size={60} src={user && user.profile_img} fontSize={60} />
                 <div className="userPage__notice__content__wrapper__name">
                   <p>{`${user && user.full_name}`}</p>
                 </div>
@@ -209,7 +201,12 @@ class UserPage extends Component {
                 </div>
                 <div className="userPage__feed__userinfo__wrapper__button">
                   {user.id === this.props.user.id ? (
-                    <button onClick={this.handleProfile}>Edit Profile</button>
+                    <button
+                      className="userPage__change"
+                      onClick={this.handleProfile}
+                    >
+                      Edit Profile
+                    </button>
                   ) : null}
                 </div>
               </div>
@@ -277,28 +274,6 @@ class UserPage extends Component {
         <div className="userPage__filter">
           <div className="userPage__filter__wrapper">
             <div className="userPage__filter__content">
-              <div className="userPage__filter__content__label">
-                <p className="userPage__filter__content__label__text">
-                  Post Types
-                </p>
-              </div>
-              <div className="userPage__filter__content__items">
-                {postType.map((data, index) => {
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => this.handlePost(index)}
-                      className={cx("userPage__filter__content__items__item", {
-                        "userPage__filter__content__items__item-clicked":
-                          selectedPost === index
-                      })}
-                    >
-                      {data}
-                    </div>
-                  );
-                })}
-              </div>
-              <hr />
               <div className="userPage__filter__content__editor">
                 <p className="userPage__filter__content__editor__label">
                   See what experience you can have

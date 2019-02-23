@@ -9,8 +9,6 @@ import * as FeedAction from "../../ActionCreators/FeedAction";
 import { NavBar, Post, Thumb, SocialInput, Comment } from "../../Components";
 import ec from "../../Json/ec";
 import nprogress from "nprogress";
-import filterJson from "../../Json/filter";
-import cx from "classnames";
 import ContentLoader from "react-content-loader";
 import ProgressiveImage from "react-progressive-image";
 import { Modal, ModalBody, ModalFooter } from "reactstrap";
@@ -111,7 +109,6 @@ class TagPage extends Component {
     const { isLogin, user, match } = this.props;
     const {
       selectedEC,
-      selectedPost,
       feeds,
       tagLoading,
       showModal,
@@ -123,7 +120,6 @@ class TagPage extends Component {
       lightboxIsOpen,
       photoIndex
     } = this.state;
-    const postType = filterJson.post_type;
     return (
       <div className="tagPage">
         {!lightboxIsOpen ? (
@@ -296,28 +292,6 @@ class TagPage extends Component {
         <div className="tagPage__filter">
           <div className="tagPage__filter__wrapper">
             <div className="tagPage__filter__content">
-              <div className="tagPage__filter__content__label">
-                <p className="tagPage__filter__content__label__text">
-                  Post Types
-                </p>
-              </div>
-              <div className="tagPage__filter__content__items">
-                {postType.map((data, index) => {
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => this.handlePost(index)}
-                      className={cx("tagPage__filter__content__items__item", {
-                        "tagPage__filter__content__items__item-clicked":
-                          selectedPost === index
-                      })}
-                    >
-                      {data}
-                    </div>
-                  );
-                })}
-              </div>
-              <hr />
               <div className="tagPage__filter__content__editor">
                 <p className="tagPage__filter__content__editor__label">
                   See what experience you can have

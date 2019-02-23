@@ -21,7 +21,6 @@ import { Modal, ModalBody, ModalFooter, Collapse } from "reactstrap";
 import _ from "lodash";
 import BottomScrollListener from "react-bottom-scroll-listener";
 import Autosuggest from "react-autosuggest";
-import { FAILED_TO_GET_FEED_BY_USER_ID } from "../../ActionCreators/UserAction";
 
 // import list from "../../Json/HotTopic.json";
 const defaultProps = {};
@@ -524,12 +523,13 @@ class HomePage extends Component {
 
     if (footerLoading) {
       if (selectedPost === 0) {
-        this.getAllFeed(index, 2, { rank: selectedFeed === 0 ? 0 : 1 });
+        this.getAllFeed(index, 2, { rank: selectedFeed });
       } else {
         const params = {
           type: selectedPost,
           props: this.props,
-          index
+          index,
+          rank: selectedFeed
         };
         dispatch(FeedAction.getFeed(params)).then(value => {
           const newFeeds = value.result.slice();
@@ -569,7 +569,6 @@ class HomePage extends Component {
       isPosting: typeIndex === 0 ? true : false // 맨처음 로딩인지, 필터링 로딩인지
     }));
     dispatch(FeedAction.getAllFeed(params)).then(value => {
-      console.log(value);
       if (value === "token_expired") {
         nprogress.done();
       } else {

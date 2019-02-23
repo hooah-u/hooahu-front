@@ -1,7 +1,7 @@
 // This Page is Skeleton of React Structure for Web Development
 // If you want to make other page, Copy and Refactor this page.
 
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import unitJson from "../../Json/unit";
 import {
@@ -11,7 +11,11 @@ import {
   DropdownItem
 } from "reactstrap";
 
-import { NavBar } from "../../Components";
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
+import FileInputComponent from "react-file-input-previews-base64";
+
+import { NavBar, Thumb, RoundInput } from "../../Components";
 
 import * as AuthAction from "../../ActionCreators/AuthAction";
 
@@ -36,7 +40,8 @@ class ProfilePage extends Component {
       area: "",
       old_pass: "",
       new_pass: "",
-      isvalid: false
+      isvalid: false,
+      showCrop: false
     };
   }
 
@@ -57,23 +62,24 @@ class ProfilePage extends Component {
   render() {
     // console.log(this.props.user);
     const { user } = this.props;
+    const { showCrop } = this.state;
     const unit = unitJson.data;
     return (
       <div className="profilePage">
         <NavBar />
         <div className="profilePage__editForm">
-          <div>
-            Nickname{" "}
-            <input
+          <div className="profilePage__editForm__form">
+            <p>Nickname</p>
+            <RoundInput
               type="text"
               name="nickname"
-              placeholder="NICKNAME"
               defaultValue={user && user.nickname}
               onChange={e => this.setState({ nickname: e.target.value })}
             />
           </div>
-          <div>
-            Area
+          <br />
+          <div className="profilePage__editForm__form">
+            <p>Area</p>
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret>{this.state.area}</DropdownToggle>
               <DropdownMenu>
@@ -89,50 +95,105 @@ class ProfilePage extends Component {
                 })}
               </DropdownMenu>
             </Dropdown>
+            <br />
+            <button
+              className="profilePage__button"
+              onClick={this.onClickChangeProfile}
+            >
+              save
+            </button>
           </div>
 
           <br />
-          <button value="Submit" onClick={this.onClickChangeProfile}>
-            프로필 정보 변경
-          </button>
 
-          <div>
-            Password
-            <br />
-            <input
-              type="text"
-              name="password"
-              placeholder="ORIGINAL PASSWORD"
-              onChange={e => this.setState({ old_pass: e.target.value })}
-            />
-            <br />
-            <input
-              type="text"
-              name="password"
-              placeholder="NEW PASSWORD"
-              onChange={e => this.setState({ new_pass: e.target.value })}
-            />
-            <br />
-            <input
-              type="text"
-              name="password"
-              placeholder="CONFIRM PASSWORD"
-              onChange={e => this.handleConfirm(e.target.value)}
-            />
-          </div>
+          {user && user.password === null ? null : (
+            <div className="profilePage__editForm__form">
+              <p>Password</p>
+              <br />
+              <RoundInput
+                type="text"
+                name="password"
+                placeholder="ORIGINAL PASSWORD"
+                onChange={e => this.setState({ old_pass: e.target.value })}
+              />
+              <br />
+              <RoundInput
+                type="text"
+                name="password"
+                placeholder="NEW PASSWORD"
+                onChange={e => this.setState({ new_pass: e.target.value })}
+              />
+              <br />
+              <RoundInput
+                type="text"
+                name="password"
+                placeholder="CONFIRM PASSWORD"
+                onChange={e => this.handleConfirm(e.target.value)}
+              />
+              <button
+                value="Submit"
+                onClick={this.onClickChangePassword}
+                disabled={!this.state.isvalid}
+                className="profilePage__button"
+              >
+                save
+              </button>
+            </div>
+          )}
           <br />
-          <button
-            value="Submit"
-            onClick={this.onClickChangePassword}
-            disabled={!this.state.isvalid}
-          >
-            패스워드 변경
-          </button>
         </div>
-
-        <div>
-          Profile Image
-          <img src={user && user.profile_img} alt="profile" />
+        <div className="profilePage__image">
+          {user && user.password === null ? null : (
+            <Fragment>
+              <FileInputComponent
+                parentStyle={{
+                  margin: 0,
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column"
+                }}
+                labelText="Select Image"
+                labelStyle={{ fontSize: 14 }}
+                multiple={true}
+                callbackFunction={this.handleFile}
+                imagePreview={false}
+                buttonComponent={
+                  showCrop ? (
+                    <span className="socialInput__footer__camera__icon">
+                      <i className="xi-camera" />
+                    </span>
+                  ) : (
+                    <Thumb
+                      src={user && user.profile_img}
+                      fontSize={100}
+                      size={100}
+                    />
+                  )
+                }
+                accept="image/*"
+              />
+              {showCrop ? (
+                <Cropper
+                  ref="cropper"
+                  src={this.state.targetImg}
+                  style={{ height: "60%", width: "90%" }}
+                  // Cropper.js options
+                  aspectRatio={1}
+                  guides={false}
+                  crop={this._crop}
+                />
+              ) : null}
+              {showCrop ? (
+                <button
+                  value="Submit"
+                  onClick={this.updateProfileImage}
+                  className="profilePage__button"
+                >
+                  save
+                </button>
+              ) : null}
+            </Fragment>
+          )}
         </div>
       </div>
     );
@@ -167,6 +228,29 @@ class ProfilePage extends Component {
     });
   };
 
+  _crop = () => {
+    this.setState({
+      croppedImg: this.refs.cropper.getCroppedCanvas().toDataURL()
+    });
+  };
+
+  handleFile = e => {
+    this.setState({ targetImg: e[0].base64, showCrop: true });
+  };
+
+  updateProfileImage = () => {
+    const { targetImg } = this.state;
+    const params = {
+      props: this.props,
+      body: {
+        base64: targetImg
+      }
+    };
+    this.props.dispatch(AuthAction.updateProfileImage(params)).then(() => {
+      this.setState({ showCrop: false });
+    });
+  };
+
   onClickChangePassword = () => {
     const params = {
       props: this.props,
@@ -178,7 +262,7 @@ class ProfilePage extends Component {
     this.props.dispatch(AuthAction.postChangePassword(params)).then(result => {
       console.log("result:");
       console.log(result);
-      if (result.message == "password_is_wrong") {
+      if (result.message === "password_is_wrong") {
         alert("password is wrong");
       } else {
         alert("updated password successfully");

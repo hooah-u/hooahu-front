@@ -17,6 +17,10 @@ export const FAILED_TO_SIGNUP = "FAILED_TO_SIGNUP";
 
 export const SUCCEED_TO_SIGNOUT = "SUCCEED_TO_SIGNOUT";
 
+export const SUCCEED_TO_UPDATE_PROFILE_IMAGE =
+  "SUCCEED_TO_UPDATE_PROFILE_IMAGE";
+export const FAILED_TO_UPDATE_PROFILE_IMAGE = "FAILED_TO_UPDATE_PROFILE_IMAGE";
+
 export const postSignUp = params => {
   return async dispatch => {
     try {
@@ -69,7 +73,7 @@ export const postChangeProfile = params => {
             default:
               dispatch({
                 type: SUCCEED_TO_POST_CHANGE_PROFILE,
-                payload: result
+                payload: params.body
               });
               return result;
           }
@@ -91,7 +95,7 @@ export const postChangePassword = params => {
     try {
       let response = Request.postData(`api/user/update/password`, params).then(
         result => {
-          if (result == "token_expired") {
+          if (result === "token_expired") {
             return dispatch({ type: TOKEN_EXPIRED });
           } else {
             switch (result.message) {
@@ -116,6 +120,36 @@ export const postChangePassword = params => {
     } catch (error) {
       dispatch({
         type: FAILED_TO_POST_CHANGE_PASSWORD,
+        payload: { data: "NETWORK_ERROR" }
+      });
+      console.error(error);
+    }
+  };
+};
+
+export const updateProfileImage = params => {
+  return async dispatch => {
+    try {
+      let response = Request.postData(
+        `api/user/update/profile/image`,
+        params
+      ).then(result => {
+        switch (result) {
+          case "token_expired":
+            return dispatch({ type: TOKEN_EXPIRED });
+
+          default:
+            dispatch({
+              type: SUCCEED_TO_UPDATE_PROFILE_IMAGE,
+              payload: result
+            });
+            return result;
+        }
+      });
+      return response;
+    } catch (error) {
+      dispatch({
+        type: FAILED_TO_UPDATE_PROFILE_IMAGE,
         payload: { data: "NETWORK_ERROR" }
       });
       console.error(error);

@@ -76,8 +76,8 @@ class SignUpPage extends Component {
                 <RoundButton
                   text="Sign In"
                   icon="xi-mail"
-                  className="signUp__content__title__button"
-                  textClassName="signUp__content__title__text"
+                  className="signUp__content__title__buttonIn"
+                  textClassName="signUp__content__title__textF"
                   iconClassName="signUp__content__title__icon"
                 />
               </Link>
@@ -102,7 +102,7 @@ class SignUpPage extends Component {
                   scope="public_profile"
                   callback={this.responseFacebook}
                   textButton="Sign up with Facebook"
-                  className="signUp__content__title__buttonF"
+                  cssClass="signUp__content__title__buttonF"
                   textClassName="signUp__content__title__textF"
                   iconClassName="signUp__content__title__iconF"
                 />
