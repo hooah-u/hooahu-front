@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AuthAction from "../../ActionCreators/AuthAction";
 import * as UserAction from "../../ActionCreators/UserAction";
-import { NavBar, RoundButton } from "../../Components";
+import { RoundButton } from "../../Components";
 import { Container, Row } from "reactstrap";
 import FacebookLogin from "react-facebook-login";
 import { Fade } from "react-slideshow-image";
