@@ -163,7 +163,7 @@ class HomePage extends Component {
 
   onSuggestionsFetchRequested = ({ value }) => {
     const inputValue = (value && value.trim().toLowerCase()) || "";
-    // const inputLength = inputValue.length;
+    // const inputLength = inputValue.length test;
     const { dispatch } = this.props;
     let finalValue = inputValue.replace(/\#/g, "");
     const params = { props: this.props, tag_name: finalValue };
